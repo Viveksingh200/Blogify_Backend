@@ -23,7 +23,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "blogify-blogs.up.railway.app"
+      "https://blogify-blogs.up.railway.app"
     ],
     credentials: true,
   })
