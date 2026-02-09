@@ -14,7 +14,12 @@ router.post(
 router.get("/public", checkUserAuth, getPublicBlogs);
 router.get("/", checkUserAuth, getMyBlogs);
 router.get("/:blogId", checkUserAuth, getSingleBlog);
-router.put("/update/:blogId", checkUserAuth, updateBlog);
+router.put(
+  "/update/:blogId",
+  checkUserAuth,
+  upload.single("image"),
+  updateBlog
+);
 router.delete("/delete/:blogId", checkUserAuth, deleteBlog);
 
 

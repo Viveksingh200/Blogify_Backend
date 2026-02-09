@@ -88,34 +88,39 @@ export const getMyBlogs = async(req, res) => {
 }
 
 //Edit blog
-export const updateBlog = async (req, res)=>{
+export const updateBlog = async (req, res) => {
   try {
-    const {blogId} = req.params;
-    const {title, body, visibility} = req.body;
+    const { blogId } = req.params;
+    const { title, body, visibility } = req.body;
 
     const blog = await Blog.findById(blogId);
-
     if (!blog) {
-      return res.status(404).json({message: "Blog not found"});
+      return res.status(404).json({ message: "Blog not found" });
     }
 
     if (blog.author.toString() !== req.user.id) {
-      return res.status(401).json({message: "Unauthorized accsess"});
+      return res.status(401).json({ message: "Unauthorized" });
     }
 
-    blog.title = title|| blog.title;
-    blog.body = body || blog.body;
-    blog.visibility = visibility || blog.visibility;
+    blog.title = title ?? blog.title;
+    blog.body = body ?? blog.body;
+    blog.visibility = visibility ?? blog.visibility;
+
+    if (req.file) {
+      blog.image = `/uploads/${req.file.filename}`;
+    }
 
     await blog.save();
 
-    return res.status(200).json({message: "Blog Updated succesfully", data: blog});
+    res.status(200).json({
+      message: "Blog updated successfully",
+      data: blog,
+    });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({message: "Internal server error"});
-  
+    console.error("UPDATE BLOG ERROR:", error);
+    res.status(500).json({ message: "Server error" });
   }
-}
+};
 
 //Delete blog
 export const deleteBlog = async (req, res) => {
