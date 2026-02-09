@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-  "start": "node index.js",
-  "dev": "nodemon index.js",
+  "start": "node server.js",
+  "dev": "nodemon server.js",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
