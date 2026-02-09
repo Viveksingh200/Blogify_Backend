@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-  "start": "nodemon server.js",
+  "start": "node index.js",
+  "dev": "nodemon index.js",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
